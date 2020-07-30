@@ -27,7 +27,17 @@ public class SingleLinkedListDemo {
         HeroNode newHeroNode = new HeroNode(5, "小路", "小玉");
         //修改
         singleLinkedList.update(newHeroNode);
+        System.out.println("*********************");
+        singleLinkedList.list();
+        System.out.println("=============");
+        //删除节点
+        singleLinkedList.del(1);
+        singleLinkedList.del(4);
+        singleLinkedList.del(2);
+        singleLinkedList.del(3);
+        singleLinkedList.del(5);
 
+        System.out.println("删除后");
         singleLinkedList.list();
     }
 }
@@ -106,6 +116,24 @@ class SingleLinkedList {
         if (!flag) {
             System.out.println("未找到该节点");
         }
+    }
+
+    /**
+     * 按编号删除英雄
+     * @param no
+     */
+    public void del(int no) {
+        HeroNode temp = head;
+        while (temp.next != null) {
+            if (temp.next.no == no) {
+                temp.next = temp.next.next;
+                System.out.printf("删除编号为%d的英雄", no);
+                System.out.println();
+                return;
+            }
+            temp = temp.next;
+        }
+        System.out.println("链表不存在该元素，不能删除");
     }
 
     /**
