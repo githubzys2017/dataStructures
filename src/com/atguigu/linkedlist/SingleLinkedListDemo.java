@@ -29,13 +29,16 @@ public class SingleLinkedListDemo {
         singleLinkedList.update(newHeroNode);
         System.out.println("*********************");
         singleLinkedList.list();
+        System.out.println("链表的数量是： " + singleLinkedList.size());
         System.out.println("=============");
         //删除节点
         singleLinkedList.del(1);
+        System.out.println("链表的数量是： " + singleLinkedList.size());
         singleLinkedList.del(4);
         singleLinkedList.del(2);
         singleLinkedList.del(3);
         singleLinkedList.del(5);
+        System.out.println("链表的数量是： " + singleLinkedList.size());
 
         System.out.println("删除后");
         singleLinkedList.list();
@@ -151,6 +154,20 @@ class SingleLinkedList {
             System.out.println(temp);
             temp = temp.next;
         }
+    }
+
+    /**
+     * 链表的有效数据数量
+     * @return
+     */
+    public int size() {
+        HeroNode temp = head;
+        int count = 0;
+        while (temp.next != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
     }
 }
 
