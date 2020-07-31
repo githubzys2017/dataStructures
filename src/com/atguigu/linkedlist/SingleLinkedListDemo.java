@@ -24,23 +24,26 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(hero3);
 //        singleLinkedList.addByOrder(hero3);
 
-        HeroNode newHeroNode = new HeroNode(5, "小路", "小玉");
-        //修改
-        singleLinkedList.update(newHeroNode);
-        System.out.println("*********************");
-        singleLinkedList.list();
-        System.out.println("链表的数量是： " + singleLinkedList.size());
-        System.out.println("=============");
-        //删除节点
-        singleLinkedList.del(1);
-        System.out.println("链表的数量是： " + singleLinkedList.size());
-        singleLinkedList.del(4);
-        singleLinkedList.del(2);
-        singleLinkedList.del(3);
-        singleLinkedList.del(5);
-        System.out.println("链表的数量是： " + singleLinkedList.size());
-
-        System.out.println("删除后");
+//        HeroNode newHeroNode = new HeroNode(5, "小路", "小玉");
+//        //修改
+//        singleLinkedList.update(newHeroNode);
+//        System.out.println("*********************");
+//        singleLinkedList.list();
+//        System.out.println("链表的数量是： " + singleLinkedList.size());
+//        System.out.println("=============");
+//        //删除节点
+//        singleLinkedList.del(1);
+//        System.out.println("链表的数量是： " + singleLinkedList.size());
+//        singleLinkedList.del(4);
+//        System.out.println("链表的数量是： " + singleLinkedList.size());
+//
+//        System.out.println("删除后");
+//        singleLinkedList.list();
+//        System.out.println("查找元素");
+//        HeroNode lastIndexNode = singleLinkedList.findLastIndexNode(3);
+//        System.out.println("res = " + lastIndexNode);
+        System.out.println("链表反转");
+        singleLinkedList.reserve();
         singleLinkedList.list();
     }
 }
@@ -169,6 +172,47 @@ class SingleLinkedList {
         }
         return count;
     }
+
+    /**
+     * 获取倒数第几个元素
+     * @param index
+     * @return
+     */
+    public HeroNode findLastIndexNode(int index) {
+        //判断链表是否为空
+        if (head.next != null) {
+            //校验参数是否合法
+            if (index > 0 && index <= size()) {
+                //遍历，查找倒数第index个元素
+                HeroNode temp = head;
+                for (int i = 0; i <= size() - index; i++) {
+                    temp = temp.next;
+                }
+                return temp;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 单链表反转
+     */
+    public void reserve() {
+        if (head.next != null) {
+            HeroNode first = head.next;     //指向当前节点
+            HeroNode sescond = null;        //指向当前节点的下一节点
+            HeroNode third = null;          //反转后的第一个节点
+            while (first!= null) {
+                //
+                sescond = first.next;
+                first.next = third;
+                third = first;
+                first = sescond;
+            }
+            head.next = third;
+        }
+    }
+
 }
 
 
