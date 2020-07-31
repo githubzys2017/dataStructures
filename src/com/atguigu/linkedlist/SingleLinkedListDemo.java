@@ -1,6 +1,7 @@
 package com.atguigu.linkedlist;
 
 import javax.swing.plaf.PanelUI;
+import java.util.Stack;
 
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
@@ -42,9 +43,34 @@ public class SingleLinkedListDemo {
 //        System.out.println("查找元素");
 //        HeroNode lastIndexNode = singleLinkedList.findLastIndexNode(3);
 //        System.out.println("res = " + lastIndexNode);
-        System.out.println("链表反转");
-        singleLinkedList.reserve();
+//        System.out.println("链表反转");
+//        singleLinkedList.reserve();
+//        singleLinkedList.list();
+
+        System.out.println("原链表");
         singleLinkedList.list();
+        System.out.println("逆序打印链表");
+        reservePrint(singleLinkedList);
+
+
+    }
+
+    public static void reservePrint(SingleLinkedList linkedList) {
+        HeroNode head = linkedList.getHead();
+        //判断链表是否为空
+        if (head.next != null) {
+            Stack<HeroNode> stack = new Stack<>();
+            HeroNode cur = head.next;
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.next;
+            }
+
+            //打印
+            while (stack.size() > 0) {
+                System.out.println(stack.pop());
+            }
+        }
     }
 }
 
@@ -55,6 +81,10 @@ public class SingleLinkedListDemo {
 class SingleLinkedList {
     //初始化头节点，头节点不动，不存放具体数据
     private HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加节点到单向链表
